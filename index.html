@@ -33,22 +33,22 @@
 
     <!-- Favicons -->
     <!-- RRA Consultancy Favicon -->
-    <link rel="icon" href="/favicon/Ellipse 1.png" sizes="any" />
+    <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/favicon/Ellipse 1.png"
+      href="/favicon/favicon-32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/favicon/Ellipse 1.png"
+      href="/favicon/favicon-16.png"
     />
-    <link rel="apple-touch-icon" href="/favicon/Ellipse 1.png" />
-    <link rel="manifest" href="/favicon/Ellipse 1.png" />
-    <meta name="theme-color" content="#121317" />
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <meta name="theme-color" content="#1B2340" />
 
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
@@ -649,11 +649,22 @@
 
           <div data-reveal>
             <form class="contact-form" id="enquiryForm" novalidate>
-              <div class="form-success" id="formSuccess" role="status">
-                Thanks — your enquiry details are ready. Since this form isn't
-                connected to a server yet, please also send it via WhatsApp or
-                email using the buttons that follow, and we'll respond directly.
-              </div>
+              <div class="form-success" id="formSuccess" role="status"></div>
+
+              <!-- Formspree config: sets the email subject and replies-to address -->
+              <input
+                type="hidden"
+                name="_subject"
+                value="New enquiry — RRA Consultancy website"
+              />
+              <!-- Honeypot spam trap: real users never see or fill this -->
+              <input
+                type="text"
+                name="_gotcha"
+                style="display: none"
+                tabindex="-1"
+                autocomplete="off"
+              />
 
               <div class="form-row">
                 <label for="f-name">Name</label>
@@ -724,8 +735,8 @@
                 Send Enquiry
               </button>
               <p class="form-note">
-                This form doesn't submit to a server yet — for now, please
-                confirm your enquiry over Call, WhatsApp, or Email above.
+                We'll typically respond within one business day. For anything
+                urgent, Call or WhatsApp us using the details above.
               </p>
             </form>
           </div>
@@ -739,7 +750,7 @@
         <div class="footer-grid">
           <div>
             <div class="footer-brand">
-              <img src="favicon/Ellipse 1.png" alt="" width="30" height="30" />
+              <img src="favicon/favicon-32.png" alt="" width="30" height="30" />
               <span class="footer-brand-name">RRA Consultancy</span>
             </div>
             <p class="footer-tagline">Guidance. Solution. Growth.</p>

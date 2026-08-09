@@ -47,42 +47,41 @@
   var SERVICES = {
     gst: {
       title: "GST Services",
-      blurb: "Assistance with registration, returns, and the ongoing documentation GST compliance requires.",
+      blurb:
+        "Assistance with registration, returns, and the ongoing documentation GST compliance requires.",
       items: [
         "GST Registration",
         "GST Return Assistance",
         "GST Compliance",
         "GST Documentation",
-        "GST Guidance"
-      ]
+        "GST Guidance",
+      ],
     },
     tax: {
       title: "Income Tax",
-      blurb: "Support with filing, documentation, and understanding what applies to your specific situation.",
+      blurb:
+        "Support with filing, documentation, and understanding what applies to your specific situation.",
       items: [
         "Income Tax Return Assistance",
         "Tax Documentation",
-        "Tax Compliance Guidance"
-      ]
+        "Tax Compliance Guidance",
+      ],
     },
     accounting: {
       title: "Accounting",
       blurb: "Keeping your financial records organized and up to date.",
-      items: [
-        "Bookkeeping",
-        "Accounting Assistance",
-        "Financial Records"
-      ]
+      items: ["Bookkeeping", "Accounting Assistance", "Financial Records"],
     },
     licenses: {
       title: "Licenses & Registrations",
-      blurb: "Help navigating the government licensing and registration process for your business.",
+      blurb:
+        "Help navigating the government licensing and registration process for your business.",
       items: [
         "Government License Assistance",
         "Business Licenses",
         "Registration Assistance",
-        "Documentation"
-      ]
+        "Documentation",
+      ],
     },
     compliance: {
       title: "Business Compliance",
@@ -90,9 +89,9 @@
       items: [
         "Compliance Assistance",
         "Regulatory Documentation",
-        "Business Formalities"
-      ]
-    }
+        "Business Formalities",
+      ],
+    },
   };
 
   var SERVICE_ORDER = ["gst", "tax", "accounting", "licenses", "compliance"];
@@ -102,17 +101,27 @@
     var detail = document.getElementById("serviceDetail");
     if (!detail || !data) return;
 
-    var itemsHtml = data.items.map(function (item, i) {
-      var n = String(i + 1).padStart(2, "0");
-      return '<li><span class="num">' + n + "</span><span>" + item + "</span></li>";
-    }).join("");
+    var itemsHtml = data.items
+      .map(function (item, i) {
+        var n = String(i + 1).padStart(2, "0");
+        return (
+          '<li><span class="num">' + n + "</span><span>" + item + "</span></li>"
+        );
+      })
+      .join("");
 
     detail.innerHTML =
       '<div class="service-detail-head">' +
-        '<h3 class="h3">' + data.title + "</h3>" +
-        '<p class="body">' + data.blurb + "</p>" +
+      '<h3 class="h3">' +
+      data.title +
+      "</h3>" +
+      '<p class="body">' +
+      data.blurb +
+      "</p>" +
       "</div>" +
-      '<ul class="service-items">' + itemsHtml + "</ul>";
+      '<ul class="service-items">' +
+      itemsHtml +
+      "</ul>";
   }
 
   var tabs = document.querySelectorAll(".service-tab");
@@ -135,16 +144,24 @@
     accordionWrap.innerHTML = SERVICE_ORDER.map(function (key, i) {
       var data = SERVICES[key];
       var n = String(i + 1).padStart(2, "0");
-      var itemsHtml = data.items.map(function (item) {
-        return "<li>" + item + "</li>";
-      }).join("");
+      var itemsHtml = data.items
+        .map(function (item) {
+          return "<li>" + item + "</li>";
+        })
+        .join("");
       return (
         '<div class="faq-item service-acc-item">' +
-          '<button class="faq-q" aria-expanded="false">' +
-            '<span><span class="tab-index" style="color:var(--secondary);margin-right:8px;">' + n + "</span>" + data.title + "</span>" +
-            '<span class="icon">+</span>' +
-          "</button>" +
-          '<div class="faq-a"><ul class="service-items" style="padding-top:4px;">' + itemsHtml + "</ul></div>" +
+        '<button class="faq-q" aria-expanded="false">' +
+        '<span><span class="tab-index" style="color:var(--secondary);margin-right:8px;">' +
+        n +
+        "</span>" +
+        data.title +
+        "</span>" +
+        '<span class="icon">+</span>' +
+        "</button>" +
+        '<div class="faq-a"><ul class="service-items" style="padding-top:4px;">' +
+        itemsHtml +
+        "</ul></div>" +
         "</div>"
       );
     }).join("");
@@ -157,36 +174,36 @@
   var FAQS = [
     {
       q: "What GST services do you provide?",
-      a: "We assist with GST registration, return filing support, ongoing compliance, and the documentation GST requires."
+      a: "We assist with GST registration, return filing support, ongoing compliance, and the documentation GST requires.",
     },
     {
       q: "Do you assist with GST registration?",
-      a: "Yes — we guide you through the registration process and help prepare the required documentation."
+      a: "Yes — we guide you through the registration process and help prepare the required documentation.",
     },
     {
       q: "Do you assist with income tax returns?",
-      a: "Yes, we help with income tax return filing, documentation, and compliance guidance for individuals and businesses."
+      a: "Yes, we help with income tax return filing, documentation, and compliance guidance for individuals and businesses.",
     },
     {
       q: "Can you help with government licenses?",
-      a: "Yes — we assist with business licenses, registrations, and the associated documentation."
+      a: "Yes — we assist with business licenses, registrations, and the associated documentation.",
     },
     {
       q: "Do you provide accounting services?",
-      a: "Yes, including bookkeeping, accounting assistance, and keeping your financial records organized."
+      a: "Yes, including bookkeeping, accounting assistance, and keeping your financial records organized.",
     },
     {
       q: "What documents are required?",
-      a: "This depends on the specific service. Get in touch and we'll let you know exactly what's needed for your situation."
+      a: "This depends on the specific service. Get in touch and we'll let you know exactly what's needed for your situation.",
     },
     {
       q: "How can I contact RRA Consultancy?",
-      a: "Call or WhatsApp +91 70490 13530, or email RRAConsultancyBPL@gmail.com. See the Contact section for all options."
+      a: "Call or WhatsApp +91 70490 13530, or email RRAConsultancyBPL@gmail.com. See the Contact section for all options.",
     },
     {
       q: "Where is RRA Consultancy located?",
-      a: "6/7 Basant Kunj Colony, Ayodhya Bypass Road, Bhopal, Madhya Pradesh."
-    }
+      a: "6/7 Basant Kunj Colony, Ayodhya Bypass Road, Bhopal, Madhya Pradesh.",
+    },
   ];
 
   var faqList = document.getElementById("faqList");
@@ -194,11 +211,15 @@
     faqList.innerHTML = FAQS.map(function (f) {
       return (
         '<div class="faq-item">' +
-          '<button class="faq-q" aria-expanded="false">' +
-            "<span>" + f.q + "</span>" +
-            '<span class="icon">+</span>' +
-          "</button>" +
-          '<div class="faq-a"><p class="body">' + f.a + "</p></div>" +
+        '<button class="faq-q" aria-expanded="false">' +
+        "<span>" +
+        f.q +
+        "</span>" +
+        '<span class="icon">+</span>' +
+        "</button>" +
+        '<div class="faq-a"><p class="body">' +
+        f.a +
+        "</p></div>" +
         "</div>"
       );
     }).join("");
@@ -240,7 +261,9 @@
   var steps = document.querySelectorAll(".process-step");
   steps.forEach(function (step) {
     step.addEventListener("mouseenter", function () {
-      steps.forEach(function (s) { s.classList.remove("is-active"); });
+      steps.forEach(function (s) {
+        s.classList.remove("is-active");
+      });
       step.classList.add("is-active");
     });
   });

@@ -4,7 +4,13 @@
   var form = document.getElementById("enquiryForm");
   if (!form) return;
 
+  // Your Formspree endpoint — submissions go to whatever email
+  // you set as the recipient when you created this form.
+  var ENDPOINT = "https://formspree.io/f/xyegkvar";
+
   var successBox = document.getElementById("formSuccess");
+  var submitBtn = form.querySelector('button[type="submit"]');
+  var submitBtnDefaultText = submitBtn ? submitBtn.textContent : "";
 
   var validators = {
     name: function (v) {
@@ -70,22 +76,67 @@
       return;
     }
 
-    handleSubmit(collectFormData(form));
+    submitForm(form);
   });
 
-  function collectFormData(formEl) {
-    var data = {};
-    new FormData(formEl).forEach(function (value, key) {
-      data[key] = value;
-    });
-    return data;
+  function setSubmitting(isSubmitting) {
+    if (!submitBtn) return;
+    submitBtn.disabled = isSubmitting;
+    submitBtn.textContent = isSubmitting ? "Sending…" : submitBtnDefaultText;
   }
-  function handleSubmit(data) {
-    if (successBox) {
-      successBox.classList.add("is-visible");
-      successBox.setAttribute("tabindex", "-1");
-      successBox.focus();
-    }
-    form.reset();
+
+  function showError(message) {
+    if (!successBox) return;
+    successBox.textContent =
+      message ||
+      "Something went wrong sending your enquiry. Please try WhatsApp, call, or email us directly using the details above.";
+    successBox.classList.remove("is-success");
+    successBox.classList.add("is-visible", "is-error");
+    successBox.setAttribute("tabindex", "-1");
+    successBox.focus();
+  }
+
+  function showSuccess() {
+    if (!successBox) return;
+    successBox.textContent =
+      "Thanks — your enquiry has been sent. We'll get back to you shortly.";
+    successBox.classList.remove("is-error");
+    successBox.classList.add("is-visible", "is-success");
+    successBox.setAttribute("tabindex", "-1");
+    successBox.focus();
+  }
+
+  function submitForm(formEl) {
+    setSubmitting(true);
+
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: new FormData(formEl),
+    })
+      .then(function (response) {
+        if (response.ok) {
+          showSuccess();
+          formEl.reset();
+        } else {
+          return response.json().then(function (data) {
+            var msg =
+              data && data.errors && data.errors.length
+                ? data.errors
+                    .map(function (e) {
+                      return e.message;
+                    })
+                    .join(", ")
+                : null;
+            showError(msg);
+          });
+        }
+      })
+      .catch(function () {
+        showError();
+      })
+      .finally(function () {
+        setSubmitting(false);
+      });
   }
 })();

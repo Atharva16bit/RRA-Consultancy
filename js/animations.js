@@ -6,7 +6,9 @@
 (function () {
   "use strict";
 
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
 
   if (reduceMotion || typeof gsap === "undefined") {
     /* Just make sure everything is visible and bail. */
@@ -32,8 +34,8 @@
       scrollTrigger: {
         trigger: el,
         start: "top 88%",
-        toggleActions: "play none none none"
-      }
+        toggleActions: "play none none none",
+      },
     });
   });
 
@@ -45,21 +47,32 @@
 
   if (heroCopy) {
     var tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    tl.fromTo(heroCopy, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.75 })
-      .fromTo(heroGraphic, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.8 }, "-=0.5");
+    tl.fromTo(
+      heroCopy,
+      { opacity: 0, y: 22 },
+      { opacity: 1, y: 0, duration: 0.75 },
+    ).fromTo(
+      heroGraphic,
+      { opacity: 0, scale: 0.96 },
+      { opacity: 1, scale: 1, duration: 0.8 },
+      "-=0.5",
+    );
 
     /* line-draw elements inside the hero SVG */
     var drawEls = document.querySelectorAll(".hero-graphic [data-draw]");
     drawEls.forEach(function (path) {
       var len = path.getTotalLength ? path.getTotalLength() : 200;
       path.style.setProperty("--len", len);
-      gsap.fromTo(path,
+      gsap.fromTo(
+        path,
         { strokeDashoffset: len },
-        { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut", delay: 0.6 }
+        {
+          strokeDashoffset: 0,
+          duration: 1.1,
+          ease: "power2.inOut",
+          delay: 0.6,
+        },
       );
     });
   }
-
-  /* Hero copy/graphic don't use [data-reveal] so they aren't
-     double-animated by the generic scroll reveal above. */
 })();
