@@ -1,0 +1,41 @@
+/* =========================================================
+   ANIMATIONS — reveal states + keyframes
+   GSAP (js/animations.js) drives the timing; this file
+   defines the resting/starting states so there's no flash
+   of unstyled content before JS initializes.
+   ========================================================= */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+/* If JS fails to load, ensure content is still visible */
+.no-js [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
+
+.hero-graphic [data-draw] {
+  stroke-dasharray: var(--len, 1000);
+  stroke-dashoffset: var(--len, 1000);
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.status-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: pulseDot 2.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .status-dot { animation: none; }
+}

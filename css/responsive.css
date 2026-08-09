@@ -1,0 +1,91 @@
+/* =========================================================
+   RESPONSIVE — mobile-first overrides
+   Breakpoints tested: 320 / 375 / 390 / 430 / 768 / 1024 / 1280 / 1440 / 1920
+   ========================================================= */
+
+/* ---- ≤1024px : condense multi-column sections ---- */
+@media (max-width: 1024px) {
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-item:nth-child(3) { border-left: 1px solid var(--border); }
+  .trust-item:nth-child(odd) { border-left: 0; }
+
+  .about-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+  .contact-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+
+  .services-panel { grid-template-columns: 260px 1fr; }
+}
+
+/* ---- ≤900px : hero stacks, nav collapses ---- */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+  .hero-graphic { max-width: 420px; margin-inline: auto; order: -1; }
+
+  .nav-links { 
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: var(--space-4) var(--space-6) var(--space-6);
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+  }
+  .nav-links.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .nav-links a { padding-block: var(--space-3); width: 100%; border-bottom: 1px solid var(--border); }
+  .nav-cta .btn-outline { display: none; }
+  .nav-toggle { display: inline-flex; }
+
+  .why-grid { grid-template-columns: 1fr; }
+
+  .services-panel { grid-template-columns: 1fr; }
+  .service-list { display: none; }
+  .service-detail { display: none; }
+  .service-accordion { display: block; }
+
+  .mobile-bar { display: block; }
+  body { padding-bottom: 60px; }
+}
+
+/* ---- ≤768px : section rhythm, process, footer ---- */
+@media (max-width: 768px) {
+  .section { padding-block: var(--space-16); }
+  .section-head { margin-bottom: var(--space-10); }
+
+  .process-step { grid-template-columns: 56px 1fr; gap: var(--space-4); }
+  .process-num { font-size: 1.6rem; }
+
+  .footer-grid { grid-template-columns: 1fr; gap: var(--space-8); }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+
+  .contact-row { grid-template-columns: 1fr; gap: var(--space-1); }
+  .contact-row .action-link { justify-self: start; margin-top: var(--space-1); }
+}
+
+/* ---- ≤430px : tight phones ---- */
+@media (max-width: 430px) {
+  .wrap { padding-inline: var(--space-4); }
+  .hero { padding-top: 6rem; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; }
+  .hero-quickdial { flex-direction: column; gap: var(--space-3); }
+
+  .trust-grid { grid-template-columns: 1fr; }
+  .trust-item { border-left: 0 !important; border-top: 1px solid var(--border); }
+  .trust-item:first-child { border-top: 0; }
+
+  .about-card { padding: var(--space-6); }
+  .contact-form { padding: var(--space-6); }
+}
+
+/* ---- ≥1440px : roomier desktop ---- */
+@media (min-width: 1440px) {
+  :root { --container: 1280px; }
+}
